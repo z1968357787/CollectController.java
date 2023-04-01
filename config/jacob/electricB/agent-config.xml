@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<config>
+	<!-- Basic information of the config file -->
+	<basicinformation>
+		<version>2.0.0</version>
+		<project>electricBinary</project>
+		<usecase>com.sun.electric.Launcher</usecase>
+	</basicinformation>
+	<!-- Target server to steam log events to -->
+	<logserver>
+		<host>localhost</host>
+		<port>9123</port>
+		<port2>9124</port2>
+		<port3>9125</port3>
+		<port4>9126</port4>
+		<type>tcp</type>
+	</logserver>
+
+	<!-- Application node identification -->
+	<nodeid>
+		<application>electricB</application>
+		<tier>electricB</tier>
+		<node>Node1</node>
+	</nodeid>
+
+	<!-- Code transformation rules configuration -->
+	<transformation-rules>
+
+		<!-- Add logging to custom pointcuts -->
+
+		<method-pointcut>
+			<enabled>true</enabled>
+			<include>com.sun.electric.Launcher</include>
+			<trace-constructor>true</trace-constructor>
+			<trace-params>true</trace-params>
+			<mine_pattern>common</mine_pattern>
+			<code_decompile>close</code_decompile>
+		</method-pointcut>
+
+		<thread-call-pointcut>
+			<enabled>true</enabled>
+			<include>com.sun.electric.Launcher</include>
+			<enabled>true</enabled>
+			<include></include>
+			<call-pattern>java.lang.Thread.start()</call-pattern>
+			<trace-catch>false</trace-catch>
+		</thread-call-pointcut>
+
+		<!-- Add logging to Socket connect and close -->
+		<socket>
+			<enabled>true</enabled>
+		</socket>
+
+		<!-- Add logging to SocketChannel connect -->
+		<socket-channel>
+			<enabled>false</enabled> <!-- Not properly investigated -->
+		</socket-channel>
+
+		<!-- Add logging to javax Servlet joinpoints -->
+		<servlet>
+			<enabled>true</enabled>
+			<includes>
+				<include>javax.servlet.*</include>
+			</includes>
+		</servlet>
+
+	</transformation-rules>
+</config>

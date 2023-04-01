@@ -1,0 +1,1 @@
+java -javaagent:"/home/yj/autodeploy/tool/log_agent-0.0.4-SNAPSHOT-shaded.jar"="/home/yj/autodeploy/config/elec/agent-config.xml" -jar /home/yj/autodeploy/application/electricBinary-9.07.jar

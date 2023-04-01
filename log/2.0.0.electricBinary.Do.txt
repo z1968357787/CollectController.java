@@ -1,0 +1,3 @@
+<log_agent版本号>2.0.0</log_agent版本号>
+<项目名称>electricBinary</项目名称>
+<用例场景>Do</用例场景>

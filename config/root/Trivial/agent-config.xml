@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<config>
+	<!-- Basic information of the config file -->
+	<basicinformation>
+		<version>log_agent-0.0.4-SNAPSHOT-shaded</version>
+		<project>Rectangle</project>
+                                <usecase>dotest222</usecase>
+	</basicinformation>
+	<!-- Target server to steam log events to -->
+	<logserver>
+		<host>localhost</host>
+		<port>9123</port>
+                                <port2>9124</port2>
+                                <port3>9125</port3>
+                                <port4>9126</port4>
+        <type>tcp</type>
+	</logserver>
+
+	<!-- Application node identification -->
+	<nodeid>
+		<application>Solution1</application>
+		<tier>Solution1</tier>
+		<node>Node1</node>
+	</nodeid>
+
+	<!-- Code transformation rules configuration -->
+	<transformation-rules>
+
+		<!-- Add logging to custom pointcuts -->
+
+                <method-pointcut>
+			<enabled>true</enabled>
+			<include>rectangle.*</include>
+			<trace-constructor>true</trace-constructor>
+           		<trace-params>true</trace-params>
+                        <mine_pattern>common</mine_pattern>
+                        <code_decompile>close</code_decompile>
+                </method-pointcut>
+
+		<thread-call-pointcut>
+			<enabled>true</enabled>
+			<include>rectangle.*</include>
+			<call-pattern>java.lang.Thread.start()</call-pattern>
+			<trace-catch>false</trace-catch>
+		</thread-call-pointcut> 
+
+		<!-- Add logging to Socket connect and close -->
+		<socket>
+			<enabled>true</enabled>
+		</socket>
+
+		<!-- Add logging to SocketChannel connect -->
+		<socket-channel>
+			<enabled>false</enabled> <!-- Not properly investigated -->
+		</socket-channel>
+
+		<!-- Add logging to javax Servlet joinpoints -->
+		<servlet>
+			<enabled>true</enabled>
+			<includes>
+			<include>javax.servlet.*</include>
+			</includes>
+		</servlet>
+
+	</transformation-rules>
+</config>
